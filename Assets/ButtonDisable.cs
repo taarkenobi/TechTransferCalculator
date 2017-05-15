@@ -15,7 +15,7 @@ public class ButtonDisable : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if (forTTO)
-            TTOClick(0);
+            print("ttoclick0");
         else
             Click(0);
 

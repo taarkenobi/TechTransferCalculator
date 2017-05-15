@@ -20,6 +20,8 @@ public class Control : MonoBehaviour {
     public GameObject ipText;
     public GameObject lpText;
     public GameObject ttopText;
+    public GameObject MountPlaceholder;
+    public GameObject MountDicePlaceholder;
 
 
     public float inventionProfit = 0;
@@ -36,6 +38,7 @@ public class Control : MonoBehaviour {
     public float feeMount = 0;
     public float royaltyMount = 0;
 
+    public GameObject ButtonsControl;
     public int wTTO = 0;
 
     public float iProfit;
@@ -48,7 +51,7 @@ public class Control : MonoBehaviour {
     public string ttoName;
     public float inventorEstimatedMultiply;
     public float licenceeEstimatedMultiply;
-    public float ttoEstimatedMount;
+    public int ttoEstimatedMount;
     public float ttoEstimatedMount2N;
     public GameObject DDInventorName;
     public GameObject DDLicenceeName;
@@ -91,10 +94,23 @@ public class Control : MonoBehaviour {
     {
         float.TryParse(ieObj.GetComponent<InputField>().text, out inventorEstimatedMultiply);
         float.TryParse(leObj.GetComponent<InputField>().text, out licenceeEstimatedMultiply);
-        float.TryParse(teObj.GetComponent<InputField>().text, out ttoEstimatedMount);
+        int.TryParse(teObj.GetComponent<InputField>().text, out ttoEstimatedMount);
         print(inventorEstimatedMultiply);
         print(licenceeEstimatedMultiply);
         print(ttoEstimatedMount);
+        if (DDTTOName.GetComponent<Dropdown>().value != 0)
+        {
+            mountB = ttoEstimatedMount;
+            mountD = 0;
+            MountPlaceholder.GetComponent<Text>().text = "" + ttoEstimatedMount;
+            MountDicePlaceholder.GetComponent<Text>().text = "0";
+            ButtonsControl.GetComponent<ButtonDisable>().TTOClick(1);
+        }
+        else
+        {
+            ButtonsControl.GetComponent<ButtonDisable>().TTOClick(0);
+        }
+
     }
 
     public void UpdateMountBase()
